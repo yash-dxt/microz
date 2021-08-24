@@ -5,6 +5,7 @@ import { logoutUserRouter } from './logout';
 import { loginUserRouter } from './login';
 import { registerUserRouter } from './register';
 import { errorHandler } from '../middleware/error-handler';
+import 'express-async-errors'; // Handles the need of throw keyword with next() in async functions.
 
 
 const app = express();
