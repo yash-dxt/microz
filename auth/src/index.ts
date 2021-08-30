@@ -1,12 +1,14 @@
 import express from 'express';
 import { json } from 'body-parser';
-import { currentUserRouter } from './current-user';
-import { logoutUserRouter } from './logout';
-import { loginUserRouter } from './login';
-import { registerUserRouter } from './register';
-import { errorHandler } from '../middleware/error-handler';
+import { currentUserRouter } from './routes/current-user';
+import { logoutUserRouter } from './routes/logout';
+import { loginUserRouter } from './routes/login';
+import { registerUserRouter } from './routes/register';
+import { errorHandler } from './middleware/error-handler';
 import 'express-async-errors'; // Handles the need of throw keyword with next() in async functions.
-
+import mongoose from 'mongoose';
+import { BadRequestError } from './errors/extensions/bad-request-error';
+import { NotFoundError } from './errors/extensions/not-found-error';
 
 const app = express();
 
@@ -20,9 +22,28 @@ app.use(loginUserRouter);
 app.use(registerUserRouter);
 
 //Error handling middleware. 
-app.use(errorHandler);
 
+app.all('*', () => {
+  throw new BadRequestError('sing sing');
+});
+
+const start = async () => {
+  try {
+    await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    });
+    console.log("Mongo db is running")
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+app.use(errorHandler);
 
 app.listen(3000, () => {
   console.log('Listening on port 3000');
 });
+
+start();

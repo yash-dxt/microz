@@ -1,15 +1,18 @@
 apiVersion: skaffold/v2beta20
 kind: Config
-metadata:
-  name: koko
-build:
-  artifacts:
-  - image: us.gcr.io/koko-dev-323611/auth
-    context: auth
-    docker:
-      dockerfile: Dockerfile
 deploy:
   kubectl:
     manifests:
-    - infra/k8s/auth-depl.yaml
-    - infra/k8s/ingress-srv.yaml
+      - ./infra/k8s/*
+build:
+  googleCloudBuild:
+    projectId: koko-69    
+  artifacts:
+    - image: us.gcr.io/koko-69/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
