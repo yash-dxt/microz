@@ -1,11 +1,13 @@
+
 import express from 'express';
+import 'express-async-errors'; // Handles the need of throw keyword with next() in async functions.
+
 import { json } from 'body-parser';
 import { currentUserRouter } from './routes/current-user';
 import { logoutUserRouter } from './routes/logout';
 import { loginUserRouter } from './routes/login';
 import { registerUserRouter } from './routes/register';
 import { errorHandler } from './middleware/error-handler';
-import 'express-async-errors'; // Handles the need of throw keyword with next() in async functions.
 import mongoose from 'mongoose';
 import { BadRequestError } from './errors/extensions/bad-request-error';
 import { NotFoundError } from './errors/extensions/not-found-error';
@@ -24,7 +26,7 @@ app.use(registerUserRouter);
 //Error handling middleware. 
 
 app.all('*', () => {
-  throw new BadRequestError('sing sing');
+  throw new BadRequestError('Route does not exist! Please check the route!');
 });
 
 const start = async () => {
