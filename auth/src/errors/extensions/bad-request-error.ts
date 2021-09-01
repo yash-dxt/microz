@@ -7,7 +7,6 @@ export class BadRequestError extends CustomBaseError {
         Object.setPrototypeOf(this, BadRequestError.prototype);
     }
     getErrorList() {
-        console.log("this is called");
         return [{
             message: this.message
         }];
