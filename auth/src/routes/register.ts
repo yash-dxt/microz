@@ -10,7 +10,9 @@ const router = express.Router();
 
 router.post('/api/user/register', [
     body('email').isEmail().withMessage('Email must be valid'),
-    body('password').trim().isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
+    body('password').trim().isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
+    query('role').exists().isIn(['owner', 'user']).withMessage('Role was wrong!'),
+
     //Validation returns with errors in req. 
 
 ], validateRequest, async (req: Request, res: Response) => {

@@ -5,8 +5,8 @@ import { DataValidationError } from "../errors/extensions/validation-error";
 
 export const validateRequest = (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req); //Error gets assigned error in the form of array from here. 
-    if (!errors) {
-        throw new DataValidationError(errors);
+    if (!errors.isEmpty()) {
+        throw new DataValidationError(errors.array());
     }
     //If no error will continue to middleware. 
     next();
