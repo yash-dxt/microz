@@ -15,6 +15,13 @@ spec:
       containers:
         - name: auth
           image: us.gcr.io/koko-69/auth
+          env:
+            - name: TOKEN_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: token-secret
+                  key: TOKEN_KEY
+
 ---
 apiVersion: v1
 kind: Service

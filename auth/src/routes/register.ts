@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { body, param, query } from 'express-validator';
+import { body, query } from 'express-validator';
 import { BadRequestError } from '../errors/extensions/bad-request-error';
 import { validateRequest } from '../middleware/validate-request';
 import { User } from '../models/User';
