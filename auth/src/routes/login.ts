@@ -29,8 +29,7 @@ router.post('/api/user/login',
         if (!correctPass) {
             throw new BadRequestError('Authentication Failed!');
         }
-
-        const jwt = await Token.getJwt(email, existingUser.roles);
+        const jwt = Token.getJwt(email, existingUser.roles);
         const response = {
             user: existingUser, token: jwt
         };

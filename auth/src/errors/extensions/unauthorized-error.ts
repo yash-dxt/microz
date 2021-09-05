@@ -1,6 +1,6 @@
 import { CustomBaseError } from "../custom-error";
 
-class UnauthorizedError extends CustomBaseError {
+export class UnauthorizedError extends CustomBaseError {
     statusCode = 400;
 
     constructor() {

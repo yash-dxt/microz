@@ -6,12 +6,12 @@ export class Token {
         return uuidv4();
     }
 
-    static async getJwt(email: string, roles: string[]) {
-        let token = await jwt.sign({ email, roles }, process.env.TOKEN_KEY!, { expiresIn: 600000 });
+    static getJwt(email: string, roles: string[]) {
+        let token = jwt.sign({ email, roles }, process.env.TOKEN_KEY!, { expiresIn: 600000 });
         return token;
     }
 
-    static async verifyJwt(token: string) {
-        return await jwt.verify(token, process.env.TOKEN_KEY!);
+    static verifyJwt(token: string) {
+        return jwt.verify(token, process.env.TOKEN_KEY!);
     }
 }
