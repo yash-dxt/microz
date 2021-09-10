@@ -7,6 +7,9 @@ const start = async () => {
   if (!process.env.TOKEN_KEY) {
     throw new Error('JWT key is not defined.');
   }
+  if (!process.env.REFRESH_TOKEN_KEY) {
+    throw new Error('JWT key is not defined.');
+  }
 
   try {
     await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {

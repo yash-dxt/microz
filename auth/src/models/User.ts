@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 interface UserAttributes {
     email: string;
     password: string;
-    refreshToken: string;
     roles: string[]
 }
 
@@ -15,7 +14,6 @@ interface UserModel extends mongoose.Model<UserDoc> {
 interface UserDoc extends mongoose.Document {
     email: string;
     password: string;
-    refreshToken: string;
     roles: string[]
 }
 
@@ -33,9 +31,7 @@ const userSchema = new mongoose.Schema({
         type: [String],
         required: true
     },
-    refreshToken: {
-        type: String,
-    },
+
 
 }, {
     toJSON: {

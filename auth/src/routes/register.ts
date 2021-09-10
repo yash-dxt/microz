@@ -66,17 +66,21 @@ router.post('/api/user/register', [
 
     password = await Password.hash(password);
 
-    const refreshToken = Token.refreshToken();
     const jwt = Token.getJwt(email, roles);
 
 
     const user = User.build({
-        email, password, roles, refreshToken
+        email, password, roles
     })
     await user.save();
 
+    const refreshToken = Token.getRefreshToken(user.id, password);
+
+
     const response = {
-        user, token: jwt
+        user, tokens: {
+            refreshToken, jwt
+        }
     }
 
 
