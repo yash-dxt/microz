@@ -74,8 +74,7 @@ router.post('/api/user/register', [
     })
     await user.save();
 
-    const refreshToken = Token.getRefreshToken(user.id, password);
-
+    const refreshToken = Token.getRefreshToken(user._id, password);
 
     const response = {
         user, tokens: {

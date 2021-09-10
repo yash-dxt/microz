@@ -21,6 +21,12 @@ spec:
                 secretKeyRef:
                   name: token-secret
                   key: TOKEN_KEY
+            - name: REFRESH_TOKEN_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: refresh-token-secret
+                  key: REFRESH_TOKEN_KEY
+
 
 ---
 apiVersion: v1

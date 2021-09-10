@@ -5,8 +5,8 @@ import { validateRequest } from '../middleware/validate-request';
 
 const router = express.Router();
 
-router.get('api/user/get', getCurrentUser, authentication, (req: Request, res: Response) => {
-    res.send({ user: req.user || null });
+router.get('/api/user/get', getCurrentUser, authentication, (req: Request, res: Response) => {
+    res.send({ user: req.user || null, tokens: req.tokens || null });
 
 });
 

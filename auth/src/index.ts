@@ -8,7 +8,7 @@ const start = async () => {
     throw new Error('JWT key is not defined.');
   }
   if (!process.env.REFRESH_TOKEN_KEY) {
-    throw new Error('JWT key is not defined.');
+    throw new Error('Refresh token key is not defined.');
   }
 
   try {

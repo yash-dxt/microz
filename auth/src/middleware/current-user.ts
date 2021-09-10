@@ -29,15 +29,17 @@ export const getCurrentUser = async (req: Request, res: Response, next: NextFunc
     }
     const jwt = req.headers.authorization;
     const refreshToken = req.headers['refresh-token'] as string;
+
     try {
         const payload = Token.verifyJwt(jwt) as UserPayload;
         req.user = payload;
     } catch (e) {
-
-        let funcReturn = await refreshTokens(refreshToken);
+        const funcReturn = await refreshTokens(refreshToken)
         req.user = funcReturn.user as UserPayload;
         req.tokens = funcReturn.tokens;
+
     }
+    next();
 }
 
 

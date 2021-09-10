@@ -33,6 +33,7 @@ router.post('/api/user/login',
 
         const refreshToken = Token.getRefreshToken(existingUser.id, existingUser.password);
 
+
         const response = {
             user: existingUser, tokens: { jwt, refreshToken }
         };

@@ -9,7 +9,7 @@ export class Token {
 
     static getRefreshToken(userId: string, password: string) {
         let salt = password + process.env.REFRESH_TOKEN_KEY!;
-        let rt = jwt.sign(userId, salt, { expiresIn: '7d' });
+        let rt = jwt.sign({ userId }, salt, { expiresIn: '7d' });
         return rt;
     }
 
